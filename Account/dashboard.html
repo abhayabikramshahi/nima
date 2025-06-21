@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FSOCIETY | Dashboard</title>
+    <link rel="stylesheet" href="/Account/term.css">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            font-family: 'Fira Mono', 'Consolas', 'Menlo', monospace;
+            background: url('../background2.jpg') center center/cover no-repeat fixed, #181a1b;
+        }
+        .dashboard-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(20,20,20,0.85);
+        }
+        .dashboard-header {
+            color: #00ff41;
+            font-size: 2.2rem;
+            font-family: 'Fira Mono', 'Consolas', monospace;
+            margin-bottom: 18px;
+            letter-spacing: 2px;
+            text-shadow: 0 0 8px #00ff41, 0 0 2px #fff;
+        }
+        .dashboard-terminal {
+            background: #181a1b;
+            color: #00ff41;
+            font-size: 1.1rem;
+            border-radius: 10px;
+            box-shadow: 0 8px 32px 0 rgba(31,38,135,0.37);
+            padding: 32px 36px;
+            min-width: 340px;
+            max-width: 90vw;
+            margin-bottom: 24px;
+            font-family: 'Fira Mono', 'Consolas', monospace;
+        }
+        .dashboard-user {
+            color: #fff;
+            font-size: 1.1rem;
+            margin-bottom: 18px;
+            text-align: center;
+        }
+        .logout-btn {
+            background: #232526;
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+        .logout-btn:hover {
+            background: #ff4d4f;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="dashboard-header">FSOCIETY // HACKING DASHBOARD</div>
+        <div class="dashboard-user">Welcome, <span id="user-name">nima</span> <span style="color:#00bcd4;">[root]</span></div>
+        <div class="dashboard-terminal">
+            <pre>
+┌──(nima㉿fsociety)-[~/underground]
+└─$ echo "Welcome to the underground, nima!"
+Welcome to the underground, nima!
+
+└─$ whoami
+nima
+
+└─$ uptime
+up: 1337 days, 4:20, 0 users, load average: 0.01, 0.00, 0.00
+            </pre>
+        </div>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+    <script>
+        // Only allow access if logged in
+        if (localStorage.getItem('fsociety_logged_in') !== 'true') {
+            window.location.href = '/index.html';
+        }
+        function logout() {
+            localStorage.removeItem('fsociety_logged_in');
+            window.location.href = '/index.html';
+        }
+    </script>
+</body>
+</html>

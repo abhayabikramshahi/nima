@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FSOCIETY Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <form id="loginForm">
+            <h1>Welcome to FSOCIETY</h1>
+            <div class="input-group">
+                <input placeholder="Username" type="text" id="username" required class="input-box">
+            </div>
+            <div class="input-group">
+                <input placeholder="Password" type="password" id="password" required class="input-box">
+            </div>
+            <button type="submit" class="button">Login</button>
+            <div id="error-message" class="error-message"></div>
+        </form>
+    </div>
+    <p class="ac">Don't have an account? Want to join us? Read our <a href="Account/Term.html">Terms and Policy</a></p>
+    <div class="forgot-password-section">
+        <a href="Account/forgot.html" class="forgot-password-btn">Forgot Password?</a>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        // If user is logged in, prevent access to home page and redirect to dashboard
+        if (localStorage.getItem('fsociety_logged_in') === 'true') {
+            window.location.href = 'Account/dashboard.html';
+        }
+    </script>
+</body>
+</html>
