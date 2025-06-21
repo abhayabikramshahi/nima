@@ -6,7 +6,7 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
     const password = document.getElementById('password').value.trim();
     const errorDiv = document.getElementById('error-message');
 
-    if (username === 'nima' && password === 'nima') {
+    if (username === 'admin' && password === 'nima') {
         errorDiv.textContent = '';
         localStorage.setItem('fsociety_logged_in', 'true');
         window.location.href = '/Account/dashboard.html'; // Redirect to dashboard

@@ -40,6 +40,25 @@
             max-width: 90vw;
             margin-bottom: 24px;
             font-family: 'Fira Mono', 'Consolas', monospace;
+            min-height: 320px;
+            overflow-y: auto;
+        }
+        .dashboard-terminal-input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            color: #00ff41;
+            font-size: 1.1rem;
+            font-family: 'Fira Mono', 'Consolas', monospace;
+            outline: none;
+        }
+        .dashboard-terminal-link {
+            color: #00bcd4;
+            text-decoration: underline;
+            cursor: pointer;
+            display: block;
+            margin-bottom: 18px;
+            text-align: right;
         }
         .dashboard-user {
             color: #fff;
@@ -69,8 +88,9 @@
     <div class="dashboard-container">
         <div class="dashboard-header">FSOCIETY // HACKING DASHBOARD</div>
         <div class="dashboard-user">Welcome, <span id="user-name">nima</span> <span style="color:#00bcd4;">[root]</span></div>
-        <div class="dashboard-terminal">
-            <pre>
+        <a href="/Account/term.html" class="dashboard-terminal-link">View Terms & Policy</a>
+        <div class="dashboard-terminal" id="terminal">
+            <pre id="terminal-output">
 ┌──(nima㉿fsociety)-[~/underground]
 └─$ echo "Welcome to the underground, nima!"
 Welcome to the underground, nima!
@@ -79,8 +99,11 @@ Welcome to the underground, nima!
 nima
 
 └─$ uptime
-up: 1337 days, 4:20, 0 users, load average: 0.01, 0.00, 0.00
+up: <span id="uptime">1337 days, 4:20, 0 users, load average: 0.01, 0.00, 0.00</span>
             </pre>
+            <form id="terminal-form" autocomplete="off" style="margin-top:8px;">
+                <span style="color:#00ff41;">└─$ </span><input type="text" id="terminal-input" class="dashboard-terminal-input" autofocus />
+            </form>
         </div>
         <button class="logout-btn" onclick="logout()">Logout</button>
     </div>
@@ -89,8 +112,58 @@ up: 1337 days, 4:20, 0 users, load average: 0.01, 0.00, 0.00
         if (localStorage.getItem('fsociety_logged_in') !== 'true') {
             window.location.href = '/index.html';
         }
+
+        // Uptime calculation
+        const startTime = localStorage.getItem('fsociety_start_time') || Date.now();
+        localStorage.setItem('fsociety_start_time', startTime);
+        function formatUptime(ms) {
+            const totalSeconds = Math.floor(ms / 1000);
+            const days = Math.floor(totalSeconds / 86400);
+            const hours = Math.floor((totalSeconds % 86400) / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const seconds = totalSeconds % 60;
+            return `${days} days, ${hours}:${minutes.toString().padStart(2,'0')}, 0 users, load average: 0.01, 0.00, 0.00`;
+        }
+        function updateUptime() {
+            const uptimeSpan = document.getElementById('uptime');
+            if (uptimeSpan) {
+                const now = Date.now();
+                uptimeSpan.textContent = formatUptime(now - startTime);
+            }
+        }
+        setInterval(updateUptime, 1000);
+        updateUptime();
+
+        // Terminal command handler
+        const terminalForm = document.getElementById('terminal-form');
+        const terminalInput = document.getElementById('terminal-input');
+        const terminalOutput = document.getElementById('terminal-output');
+        terminalForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const cmd = terminalInput.value.trim();
+            let output = '';
+            if (cmd === '$root') {
+                output = 'Developer: Nima';
+            } else if (cmd === 'whoami') {
+                output = 'nima';
+            } else if (cmd === 'uptime') {
+                output = document.getElementById('uptime').textContent;
+            } else if (cmd === 'clear') {
+                terminalOutput.innerHTML = '';
+                terminalInput.value = '';
+                return;
+            } else if (cmd) {
+                output = `command not found: ${cmd}`;
+            }
+            terminalOutput.innerHTML += `\n└─$ ${cmd}\n${output}`;
+            terminalInput.value = '';
+            terminalOutput.scrollTop = terminalOutput.scrollHeight;
+        });
+        terminalInput.focus();
+
         function logout() {
             localStorage.removeItem('fsociety_logged_in');
+            localStorage.removeItem('fsociety_start_time');
             window.location.href = '/index.html';
         }
     </script>

@@ -3,59 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FSOCIETY | Terms & Policies</title>
+    <title>FSOCIETY | Hacker Terms</title>
     <link rel="stylesheet" href="/Account/term.css">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            font-family: 'Fira Mono', 'Consolas', 'Menlo', monospace;
+            background: url('../background2.jpg') center center/cover no-repeat fixed, #181a1b;
+        }
+        .terminal-terms-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(20,20,20,0.85);
+        }
+        .terminal-header {
+            color: #00ff41;
+            font-size: 2rem;
+            font-family: 'Fira Mono', 'Consolas', monospace;
+            margin-bottom: 18px;
+            letter-spacing: 2px;
+            text-shadow: 0 0 8px #00ff41, 0 0 2px #fff;
+        }
+        .terminal-window {
+            background: #181a1b;
+            color: #00ff41;
+            font-size: 1.05rem;
+            border-radius: 10px;
+            box-shadow: 0 8px 32px 0 rgba(31,38,135,0.37);
+            padding: 32px 36px;
+            min-width: 340px;
+            max-width: 90vw;
+            margin-bottom: 24px;
+            font-family: 'Fira Mono', 'Consolas', monospace;
+        }
+        .terminal-link {
+            color: #00bcd4;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <div class="terms-hero-bg">
-        <div class="terms-container">
-            <div class="terms-header">
-                <span class="icon">🕶️</span>
-                <h1>fsociety: Terms & Underground Policy Agreement</h1>
-            </div>
-            <p class="intro">Welcome to the edge of the internet, fsociety — a place for ghosts, rebels, and digital phantoms. By entering this domain, you accept the following terms carved in the source.</p>
+    <div class="terminal-terms-container">
+        <div class="terminal-header">FSOCIETY // TERMS & POLICY</div>
+        <div class="terminal-window">
+<pre>
+┌──(nima㉿fsociety)-[~/underground]
+└─$ cat terms.txt
 
-            <section class="rule">
-                <h2><span class="icon">🧠</span> Rule #1: No Scripts. No Lazy Junk.</h2>
-                <p>Leave your copy-paste garbage at the door. Scripts are banned — bring your own fresh, hand-crafted tools. We respect creativity. We worship originality.</p>
-            </section>
+Welcome to the edge of the internet, fsociety — a place for ghosts, rebels, and digital phantoms.
 
-            <section class="rule">
-                <h2><span class="icon">🤝</span> Rule #2: No Shitty Fights, No Flex.</h2>
-                <p>This isn’t a cage match — it's a brotherhood. No flaming, ego trips, or pointless beef. We're here to build, learn, and break stuff — together. You mess with the vibe, you're gone.</p>
-            </section>
+1. No Scripts. No Lazy Junk.
+   - Leave your copy-paste garbage at the door. Scripts are banned — bring your own fresh, hand-crafted tools.
+   - We respect creativity. We worship originality.
 
-            <section class="rule">
-                <h2><span class="icon">🕵️‍♂️</span> Rule #3: Do the Forbidden. Stay Invisible.</h2>
-                <p>Yes — we do the illegal, the taboo, the unsanctioned. But rule #1 of being here: <b>STAY ANONYMOUS</b>. No real names. No personal drama. No bragging. Ghost in, ghost out.</p>
-            </section>
+2. No Shitty Fights, No Flex.
+   - This isn’t a cage match — it's a brotherhood. No flaming, ego trips, or pointless beef.
+   - We're here to build, learn, and break stuff — together. You mess with the vibe, you're gone.
 
-            <section class="policy">
-                <h3>🧩 fsociety’s Own Policies (yeah, we wrote these):</h3>
-                <ul>
-                    <li><b>🔒 Anonymity &gt; Everything:</b> We don’t track you. We don’t want your data. You screw that up? That's on you. Use a VPN. Use Tor. Use your brain.</li>
-                    <li><b>🧬 Everyone is allowed:</b> We don't care about your age, just show the skills you have.</li>
-                    <li><b>⛓ No Backdoors in Shared Tools:</b> Share what you want, but no hidden rats, loggers, or snitches. We scan and we expose.</li>
-                    <li><b>🧼 Clean Posting Only:</b> This is a command center, not a circus. Post illegal things.</li>
-                    <li><b>🕳 Respect the Underground:</b> Don’t link public, don’t name names, and NEVER invite outsiders.</li>
-                </ul>
-            </section>
+3. Do the Forbidden. Stay Invisible.
+   - Yes — we do the illegal, the taboo, the unsanctioned. But rule #1: STAY ANONYMOUS.
+   - No real names. No personal drama. No bragging. Ghost in, ghost out.
 
-            <section class="final">
-                <h3>🧠 Final Line:</h3>
-                <p>You’re not here to be famous. You’re not here to be liked. You’re here to disappear in the code — and leave no trace.</p>
-            </section>
+4. fsociety’s Own Policies:
+   - Anonymity > Everything: We don’t track you. We don’t want your data. Use a VPN. Use Tor. Use your brain.
+   - Everyone is allowed: We don't care about your age, just show the skills you have.
+   - No Backdoors in Shared Tools: Share what you want, but no hidden rats, loggers, or snitches. We scan and we expose.
+   - Clean Posting Only: This is a command center, not a circus. Post illegal things.
+   - Respect the Underground: Don’t link public, don’t name names, and NEVER invite outsiders.
 
-            <p class="last-warning">If you can’t follow these rules, shut the browser now. fsociety isn’t for tourists.</p>
+Final Line:
+   - You’re not here to be famous. You’re not here to be liked. You’re here to disappear in the code — and leave no trace.
+
+If you can’t follow these rules, shut the browser now. fsociety isn’t for tourists.
+</pre>
         </div>
+        <a href="/Account/dashboard.html" class="terminal-link">&lt; Back to Dashboard</a>
     </div>
-    <script>
-        // Prevent going back to home after login by redirecting to dashboard if not logged out
-        if (window.location.pathname.endsWith('/index.html') || window.location.pathname === '/' || window.location.pathname.match(/\\index.html$/)) {
-            if (localStorage.getItem('fsociety_logged_in') === 'true') {
-                window.location.href = '/Account/dashboard.html';
-            }
-        }
-    </script>
 </body>
 </html>
