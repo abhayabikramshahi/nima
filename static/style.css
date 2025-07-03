@@ -1,0 +1,160 @@
+body {
+    background: url('/static/background2.jpg') center center/cover no-repeat fixed, linear-gradient(120deg, #232526, #414345);
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Space Grotesk', 'Segoe UI', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.box {
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.container, .dashboard-container {
+    background: rgba(34, 34, 34, 0.85);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    border-radius: 18px;
+    padding: 40px 32px 32px 32px;
+    max-width: 420px;
+    width: 100%;
+    color: #fff;
+    margin: 60px auto 24px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1, .dashboard-header {
+    color: #00ff41;
+    font-size: 2.2rem;
+    font-family: 'Fira Mono', 'Consolas', monospace;
+    margin-bottom: 18px;
+    letter-spacing: 2px;
+    text-shadow: 0 0 8px #00ff41, 0 0 2px #fff;
+}
+
+.input-group {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.input-box {
+    width: 100%;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+    font-size: 1rem;
+    margin-bottom: 4px;
+    outline: none;
+    transition: background 0.2s;
+}
+.input-box:focus {
+    background: rgba(255,255,255,0.25);
+}
+
+.button, .logout-btn {
+    width: 100%;
+    padding: 12px;
+    background: #232526;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+}
+.button:hover, .logout-btn:hover {
+    background: #00ff41;
+    color: #232526;
+}
+
+.error-message {
+    color: #ff4d4f;
+    margin-top: 12px;
+    font-size: 0.95rem;
+    min-height: 22px;
+    text-align: center;
+}
+
+.ac {
+    color: #fff;
+    margin-top: 32px;
+    font-size: 1rem;
+    text-align: center;
+}
+.ac a {
+    color: #00bcd4;
+    text-decoration: none;
+    font-weight: bold;
+}
+.ac a:hover {
+    text-decoration: underline;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+    color: #fff;
+    font-size: 0.98rem;
+}
+
+.dashboard-user {
+    color: #fff;
+    font-size: 1.1rem;
+    margin-bottom: 18px;
+    text-align: center;
+}
+
+.dashboard-terminal {
+    background: #181a1b;
+    color: #00ff41;
+    font-size: 1.05rem;
+    border-radius: 10px;
+    box-shadow: 0 8px 32px 0 rgba(31,38,135,0.37);
+    padding: 24px 20px;
+    min-width: 320px;
+    max-width: 90vw;
+    margin-bottom: 24px;
+    font-family: 'Fira Mono', 'Consolas', monospace;
+    overflow-x: auto;
+}
+.dashboard-terminal-input {
+    width: 80%;
+    background: transparent;
+    border: none;
+    color: #00ff41;
+    font-size: 1.1rem;
+    font-family: 'Fira Mono', 'Consolas', monospace;
+    outline: none;
+}
+
+@media (max-width: 700px) {
+    .container, .dashboard-container {
+        padding: 24px 8px 18px 8px;
+        max-width: 98vw;
+    }
+    .dashboard-header, h1 {
+        font-size: 1.2rem;
+    }
+    .dashboard-terminal {
+        min-width: 0;
+        font-size: 0.95rem;
+    }
+}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Login | fsociety{% endblock %}
+
+{% block content %}
+  {% if session.logged_in %}
+    <div class="container">
+      <h1>You are already logged in!</h1>
+      <p>Go to your <a href="{{ url_for('home') }}">Home</a>.</p>
+    </div>
+  {% else %}
+    <div class="container">
+      <form id="loginForm" method="POST" action="/">
+        <h1>Enter our Society</h1>
+        <div class="input-group">
+          <input placeholder="Username" type="text" id="username" name="username" required class="input-box"><br>
+        </div>
+        <div class="input-group">
+          <input placeholder="Password" type="password" id="password" name="password" required class="input-box"><br>
+        </div>
+        <div class="remember-me">
+          <input type="checkbox" id="rememberMe" name="rememberMe" {% if request.form.get('rememberMe') %}checked{% endif %}>
+          <label for="rememberMe">Remember Me</label>
+        </div>
+        <button type="submit" class="button">Login</button>
+        <p id="error-message" class="error-message">{{ error if error else '' }}</p>
+      </form>
+    </div>
+    <p class="ac">Don't have an account? Want to join us? Read some policies to join us:
+      <a href="{{ url_for('terms') }}">Terms and Policy</a>
+    </p>
+  {% endif %}
+{% endblock %}

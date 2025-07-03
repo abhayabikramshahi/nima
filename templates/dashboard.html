@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Dashboard | fsociety{% endblock %}
+{% block content %}
+<div class="dashboard-container">
+  <div class="dashboard-header">FSOCIETY // COMMAND LINE</div>
+  <div class="dashboard-user">Welcome, {{ session['username'] }} <span style="color:#00bcd4;">[root]</span></div>
+  <div class="dashboard-terminal" id="terminal">
+    <pre id="terminal-output">
+┌──({{ session['username'] }}㉿fsociety)-[~/underground]
+└─$ whoami
+{{ session['username'] }}
+    </pre>
+    <form id="terminal-form" autocomplete="off" style="margin-top:8px;">
+      <span style="color:#00ff41;">└─$ </span><input type="text" id="terminal-input" class="dashboard-terminal-input" autofocus />
+    </form>
+  </div>
+  <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
+</div>
+<script>
+  const terminalForm = document.getElementById('terminal-form');
+  const terminalInput = document.getElementById('terminal-input');
+  const terminalOutput = document.getElementById('terminal-output');
+  terminalForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const cmd = terminalInput.value.trim();
+    let output = '';
+    if (cmd === '$root') {
+      output = 'Developer: Nima';
+    } else if (cmd === 'whoami') {
+      output = "{{ session['username'] }}";
+    } else if (cmd === 'clear') {
+      terminalOutput.innerHTML = '';
+      terminalInput.value = '';
+      return;
+    } else if (cmd) {
+      output = `command not found: ${cmd}`;
+    }
+    terminalOutput.innerHTML += `\n└─$ ${cmd}\n${output}`;
+    terminalInput.value = '';
+    terminalOutput.scrollTop = terminalOutput.scrollHeight;
+  });
+  terminalInput.focus();
+</script>
+{% endblock %}

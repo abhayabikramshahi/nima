@@ -1,0 +1,60 @@
+<!-- templates/home.html -->
+{% extends "base.html" %}
+
+{% block title %}Dashboard | fsociety{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+  <div class="dashboard-header">FSOCIETY // HACKER PORTFOLIO</div>
+  <div class="dashboard-user">Welcome, <span style="color:#00ff41;">{{ session['username'] }}</span> <span style="color:#00bcd4;">[root]</span></div>
+  <div class="dashboard-terminal" id="terminal" style="margin-bottom: 24px; min-height: 220px;">
+    <pre id="terminal-output">
+┌──({{ session['username'] }}㉿fsociety)-[~/portfolio]
+└─$ whoami
+{{ session['username'] }}
+└─$ uname -a
+Linux fsociety 6.6.6-elite #1 SMP PREEMPT x86_64 GNU/Linux
+└─$ echo "Welcome to your hacker portfolio, {{ session['username'] }}!"
+Welcome to your hacker portfolio, {{ session['username'] }}!
+    </pre>
+    <form id="terminal-form" autocomplete="off" style="margin-top:8px;">
+      <span style="color:#00ff41;">└─$ </span><input type="text" id="terminal-input" class="dashboard-terminal-input" autofocus />
+    </form>
+  </div>
+  <div style="margin-bottom: 18px; color: #b2ebf2;">
+    <b>Skills:</b> Python, Flask, Linux, Web Security, Networking, Social Engineering<br>
+    <b>Projects:</b> CTFs, Red Team Tools, Custom Scripts, Secure Web Apps
+  </div>
+  <a href="{{ url_for('account') }}" class="button" style="margin-bottom: 10px;">Currency Converter</a>
+  <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
+</div>
+<script>
+  const terminalForm = document.getElementById('terminal-form');
+  const terminalInput = document.getElementById('terminal-input');
+  const terminalOutput = document.getElementById('terminal-output');
+  terminalForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const cmd = terminalInput.value.trim();
+    let output = '';
+    if (cmd === 'root') {
+      output = 'Developer: Nima';
+    } else if (cmd === 'whoami') {
+      output = "{{ session['username'] }}";
+    } else if (cmd === 'clear') {
+      terminalOutput.innerHTML = '';
+      terminalInput.value = '';
+      return;
+    } else if (cmd === 'skills') {
+      output = 'Python, Flask, Linux, Web Security, Networking, Social Engineering';
+    } else if (cmd === 'projects') {
+      output = 'CTFs, Red Team Tools, Custom Scripts, Secure Web Apps';
+    } else if (cmd) {
+      output = `command not found: ${cmd}`;
+    }
+    terminalOutput.innerHTML += `\n└─$ ${cmd}\n${output}`;
+    terminalInput.value = '';
+    terminalOutput.scrollTop = terminalOutput.scrollHeight;
+  });
+  terminalInput.focus();
+</script>
+{% endblock %}
